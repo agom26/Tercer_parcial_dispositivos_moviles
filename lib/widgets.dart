@@ -44,15 +44,19 @@ class PlacesCard extends StatelessWidget {
         child: Stack(
           children: [
             Positioned(
-                  right: 0,
-                  child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: const BoxDecoration(
+                right: 0,
+                child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: const BoxDecoration(
                         color: Colors.black54,
-                        borderRadius: BorderRadius.only(topRight:Radius.circular(15),bottomLeft: Radius.circular(15))
-                      ),
-                      child: Icon(visited ? Icons.flag : Icons.flag_outlined,color: visited ? Colors.red : Colors.white,))),
+                        borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(15),
+                            bottomLeft: Radius.circular(15))),
+                    child: Icon(
+                      visited ? Icons.flag : Icons.flag_outlined,
+                      color: visited ? Colors.red : Colors.white,
+                    ))),
             Padding(
               padding: const EdgeInsets.all(13.0),
               child: Column(
@@ -76,7 +80,6 @@ class PlacesCard extends StatelessWidget {
     );
   }
 }
-
 
 class VisitedCard extends StatelessWidget {
   final String image, title;

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:parcial3/widgets.dart';
-import 'package:parcial3/services/data.dart';
-
-int _selectedIndex = 0;
+import 'package:parcial3/widgets.dart'; // Importa los widgets PlacesCard y VisitedCard
+import 'package:parcial3/services/data.dart'; // Asegúrate de importar tus datos
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,9 +11,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    void onItemTapped(int index) {}
+    void onItemTapped(int index) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
 
     return Scaffold(
       body: SafeArea(
@@ -25,18 +29,19 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-          onTap: onItemTapped,
-          currentIndex: _selectedIndex,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Lugares',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.pin_drop),
-              label: 'Visitados',
-            ),
-          ]),
+        onTap: onItemTapped,
+        currentIndex: _selectedIndex,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Lugares',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.pin_drop),
+            label: 'Visitados',
+          ),
+        ],
+      ),
     );
   }
 }
@@ -72,7 +77,7 @@ class PlacesPage extends ConsumerWidget {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
               ),
-              itemCount: places.length,
+              itemCount: places.length, // Utiliza la lista de lugares
               itemBuilder: (context, index) {
                 final place = places[index];
                 return PlacesCard(
@@ -111,10 +116,11 @@ class VisitsPage extends ConsumerWidget {
         ),
         const Expanded(
           child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32),
-              child: Center(
-                child: Text('Aqui va la lista con lugares ya visitados'),
-              )),
+            padding: EdgeInsets.symmetric(horizontal: 32),
+            child: Center(
+              child: Text('Aqui va la lista con lugares ya visitados'),
+            ),
+          ),
         ),
       ],
     );
