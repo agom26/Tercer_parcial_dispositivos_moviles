@@ -1,7 +1,7 @@
 // Implementar login con la validación de datos que se tiene en el archivo services/data.dart
 
 import 'package:flutter/material.dart';
-import 'package:parcial3/screens/data.dart';
+import 'package:parcial3/services/data.dart';
 import 'package:parcial3/screens/home.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
     String username = usernameController.text;
     String password = passwordController.text;
 
-    if (AuthService.login(username, password)) {
+    if (username == loginData[0] && password == loginData[1]) {
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const HomeScreen()));
     } else {
